@@ -1,9 +1,4 @@
-<p align="center">
-  <a href="" rel="noopener">
- <img width=200px height=200px src="https://i.imgur.com/6wj0hh6.jpg" alt="Project logo"></a>
-</p>
-
-<h3 align="center">Github Search</h3>
+<h1 align="center">Github Search</h1>
 
 <div align="center">
 
@@ -66,7 +61,7 @@ localhost:5500
 
 ## ✍️ Authors <a name = "authors"></a>
 
-- [@riley.seaburg](https://github.com/rdsmarketing) - Idea & Initial work
+- [@riley.seaburg](https://github.com/rdsmarketing) 
 
 See also the list of [contributors](https://github.com/rdsmarketing/github-search/contributors) who participated in this project.
 
