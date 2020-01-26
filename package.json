@@ -1,0 +1,27 @@
+{
+  "name": "github-search",
+  "version": "1.0.0",
+  "description": "A Basic Github search project.",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rdsmarketing/github-search.git"
+  },
+  "keywords": [
+    "github",
+    "search",
+    "riley",
+    "seaburg",
+    "traversy",
+    "media"
+  ],
+  "author": "Riley Seaburg",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rdsmarketing/github-search/issues"
+  },
+  "homepage": "https://github.com/rdsmarketing/github-search#readme"
+}
