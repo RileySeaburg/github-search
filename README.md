@@ -39,7 +39,7 @@ What things you need to install the software and how to install them.
 NPM Installed Locally
 ```
 
-### How To Install Locally
+### How To Install Locally <a name = "how_to_install_locally"></a>
 
 
 
