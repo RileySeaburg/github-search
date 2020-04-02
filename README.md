@@ -19,13 +19,9 @@
 
 - [About](#about)
 - [Getting Started](#getting_started)
-- [Deployment](#deployment)
-- [Usage](#usage)
+- [Deployment](#how_to_install_locally)
 - [Built Using](#built_using)
-- [TODO](../TODO.md)
-- [Contributing](../CONTRIBUTING.md)
 - [Authors](#authors)
-- [Acknowledgments](#acknowledgement)
 
 ## 🧐 About <a name = "about"></a>
 
@@ -56,7 +52,7 @@ git clone https://github.com/rdsmarketing/github-search.git
 Switch to react branch
 
 ```
-git checkout -b v2-react
+git checkout -b github-finder-react
 ```
 
 Install with NPM
