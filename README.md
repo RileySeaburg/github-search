@@ -56,7 +56,7 @@ git clone https://github.com/rdsmarketing/github-search.git
 Switch to react branch
 
 ```
-git checkout -b github-finder-react
+git checkout -b v2-react
 ```
 
 Install with NPM
