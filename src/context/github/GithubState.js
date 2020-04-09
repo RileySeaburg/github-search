@@ -22,8 +22,20 @@ const GithubState = (props) => {
 
   const [state, dispatch] = useReducer(GithubReducer, initalState);
 
-  // Search User
-
+  // Search User  (Callback Function Also Arrow & Async)
+  const searchUsers = async (text) => {
+    // Update Loading State
+    setLoading();
+    // Make API Call
+    const res = await axios.get(
+      `https://api.github.com/search/users?q=${text}&client_id=${process.env.REACT_APP_GITHIB_CLIENT_ID}&clien_secret=${process.env.REACT_APP_GITHIB_CLIENT_SECRET}`
+    );
+    // Update users state with API data
+    dispatch({
+      type: SEARCH_USERS,
+      payload: res.data,
+    });
+  };
   // Get User
 
   // Get Repos
@@ -31,6 +43,7 @@ const GithubState = (props) => {
   // Clear Users
 
   // Set Loading
+  const setLoading = () => dispatch({ type: SET_LOADING });
 
   return (
     <GithubContext.Provider

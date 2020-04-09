@@ -17,18 +17,7 @@ const App = () => {
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState(null);
   // Search Users Callback Function Also Arrow & Async
-  const searchUsers = async (text) => {
-    // Update Loading State
-    setLoading(true);
-    // Make API Call
-    const res = await axios.get(
-      `https://api.github.com/search/users?q=${text}&client_id=${process.env.REACT_APP_GITHIB_CLIENT_ID}&clien_secret=${process.env.REACT_APP_GITHIB_CLIENT_SECRET}`
-    );
-    // Update users state with API data
-    setUsers(res.data.items);
-    // Update Loading state
-    setLoading(false);
-  };
+
   // Get single github user
   const getUser = async (username) => {
     // Update Loading State
