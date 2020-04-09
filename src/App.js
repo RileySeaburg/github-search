@@ -5,9 +5,9 @@ import Users from "./components/users/Users";
 import User from "./components/users/User";
 import Search from "./components/users/Search";
 import Alert from "./components/layout/Alert";
-import PropTypes from "prop-types";
 import About from "./components/pages/about";
 import axios from "axios";
+import GithubState from "./context/github/GithubState";
 import "./App.css";
 // Global State
 const App = () => {
@@ -42,7 +42,6 @@ const App = () => {
     // Update Loading State
     setLoading(false);
   };
-
   // Get users repos
   const getUserRepos = async (username) => {
     // Update Loading State
@@ -66,57 +65,51 @@ const App = () => {
   // Set Alert
   const showAlert = (msg, type) => {
     setAlert({ msg, type });
-
     setTimeout(() => setAlert(null), 1500);
   };
   return (
-    <Router>
-      <div className="app">
-        <Navbar />
-        <div className="container">
-          <Alert alert={alert} />
-          <Switch>
-            <Route
-              exact
-              path="/"
-              render={(props) => (
-                <Fragment>
-                  <Search
-                    searchUsers={searchUsers}
-                    clearUsers={clearUsers}
-                    showClear={users.length > 0 ? true : false}
-                    setAlert={showAlert}
+    <GithubState>
+      <Router>
+        <div className="app">
+          <Navbar />
+          <div className="container">
+            <Alert alert={alert} />
+            <Switch>
+              <Route
+                exact
+                path="/"
+                render={(props) => (
+                  <Fragment>
+                    <Search
+                      searchUsers={searchUsers}
+                      clearUsers={clearUsers}
+                      showClear={users.length > 0 ? true : false}
+                      setAlert={showAlert}
+                    />
+                    <Users loading={loading} users={users} />
+                  </Fragment>
+                )}
+              />
+              <Route exact path="/about" component={About} />
+              <Route
+                exact
+                path="/user/:login"
+                render={(props) => (
+                  <User
+                    {...props}
+                    getUser={getUser}
+                    getUserRepos={getUserRepos}
+                    user={user}
+                    repos={repos}
+                    loading={loading}
                   />
-                  <Users loading={loading} users={users} />
-                </Fragment>
-              )}
-            />
-            <Route exact path="/about" component={About} />
-            <Route
-              exact
-              path="/user/:login"
-              render={(props) => (
-                <User
-                  {...props}
-                  getUser={getUser}
-                  getUserRepos={getUserRepos}
-                  user={user}
-                  repos={repos}
-                  loading={loading}
-                />
-              )}
-            />
-          </Switch>
+                )}
+              />
+            </Switch>
+          </div>
         </div>
-      </div>
-    </Router>
+      </Router>
+    </GithubState>
   );
 };
-// static propTypes = {
-//   searchUsers: PropTypes.func.isRequired,
-//   clearUsers: PropTypes.func.isRequired,
-//   showClear: PropTypes.bool.isRequired,
-//   setAlert: PropTypes.func.isRequired,
-// };
-
 export default App;
