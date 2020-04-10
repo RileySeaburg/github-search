@@ -44,13 +44,7 @@ const App = () => {
     // Update Loading State
     setLoading(false);
   };
-  // clear users from state
-  const clearUsers = () => {
-    // Clear Data
-    setUsers([]);
-    // Update Loading State
-    setLoading(false);
-  };
+
   // Set Alert
   const showAlert = (msg, type) => {
     setAlert({ msg, type });
@@ -69,12 +63,7 @@ const App = () => {
                 path="/"
                 render={(props) => (
                   <Fragment>
-                    <Search
-                      searchUsers={searchUsers}
-                      clearUsers={clearUsers}
-                      showClear={users.length > 0 ? true : false}
-                      setAlert={showAlert}
-                    />
+                    <Search setAlert={showAlert} />
                     <Users loading={loading} users={users} />
                   </Fragment>
                 )}
@@ -88,9 +77,7 @@ const App = () => {
                     {...props}
                     getUser={getUser}
                     getUserRepos={getUserRepos}
-                    user={user}
                     repos={repos}
-                    loading={loading}
                   />
                 )}
               />

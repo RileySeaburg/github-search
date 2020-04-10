@@ -33,7 +33,7 @@ const GithubState = (props) => {
     // Update users state with API data
     dispatch({
       type: SEARCH_USERS,
-      payload: res.data,
+      payload: res.data.items,
     });
   };
   // Get User
@@ -41,7 +41,13 @@ const GithubState = (props) => {
   // Get Repos
 
   // Clear Users
-
+  // clear users from state
+  const clearUsers = () => {
+    // Clear Data
+    setUsers([]);
+    // Update Loading State
+    setLoading(false);
+  };
   // Set Loading
   const setLoading = () => dispatch({ type: SET_LOADING });
 
@@ -52,6 +58,8 @@ const GithubState = (props) => {
         user: state.user,
         repos: state.repos,
         loading: state.loading,
+        searchUsers,
+        clearUsers,
       }}
     >
       {props.children}
