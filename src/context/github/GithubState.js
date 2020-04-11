@@ -9,8 +9,6 @@ import {
   CLEAR_USERS,
   GET_REPOS,
   SET_LOADING,
-  SET_ALERT,
-  REMOVE_ALERT,
 } from "../types";
 const GithubState = (props) => {
   const initalState = {
@@ -37,17 +35,34 @@ const GithubState = (props) => {
     });
   };
   // Get User
-
-  // Get Repos
-
-  // Clear Users
-  // clear users from state
-  const clearUsers = () => {
-    // Clear Data
-    setUsers([]);
+  const getUser = async (username) => {
     // Update Loading State
-    setLoading(false);
+    setLoading();
+    // Make API Call
+    const res = await axios.get(
+      `https://api.github.com/users/${username}?client_id=${process.env.REACT_APP_GITHIB_CLIENT_ID}&clien_secret=${process.env.REACT_APP_GITHIB_CLIENT_SECRET}`
+    );
+    dispatch({
+      type: GET_USER,
+      payload: res.data,
+    });
   };
+  // Get Repos
+  const getUserRepos = async (username) => {
+    // Update Loading State
+    setLoading();
+    // Make API Call
+    const res = await axios.get(
+      `https://api.github.com/users/${username}/repos?per_page=5&sort=created:asc&client_id=${process.env.REACT_APP_GITHIB_CLIENT_ID}&clien_secret=${process.env.REACT_APP_GITHIB_CLIENT_SECRET}`
+    );
+    dispatch({
+      type: GET_REPOS,
+      payload: res.data,
+    });
+  };
+  // Clear Users
+
+  const clearUsers = () => dispatch({ type: CLEAR_USERS });
   // Set Loading
   const setLoading = () => dispatch({ type: SET_LOADING });
 
@@ -60,6 +75,8 @@ const GithubState = (props) => {
         loading: state.loading,
         searchUsers,
         clearUsers,
+        getUser,
+        getUserRepos,
       }}
     >
       {props.children}
