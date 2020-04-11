@@ -10,6 +10,16 @@ import {
   GET_REPOS,
   SET_LOADING,
 } from "../types";
+
+let githubClientId;
+let githubClientSecret;
+if (process.env.NODE_ENV !== "production") {
+  githubClientId = process.env.REACT_APP_GITHIB_CLIENT_ID;
+  githubClientSecret = process.env.REACT_APP_GITHIB_CLIENT_SECRET;
+} else {
+  githubClientId = process.env.GITHIB_CLIENT_ID;
+  githubClientSecret = process.env.GITHIB_CLIENT_SECRET;
+}
 const GithubState = (props) => {
   const initalState = {
     users: [],
@@ -26,7 +36,7 @@ const GithubState = (props) => {
     setLoading();
     // Make API Call
     const res = await axios.get(
-      `https://api.github.com/search/users?q=${text}&client_id=${process.env.REACT_APP_GITHIB_CLIENT_ID}&clien_secret=${process.env.REACT_APP_GITHIB_CLIENT_SECRET}`
+      `https://api.github.com/search/users?q=${text}&client_id=${githubClientId}&clien_secret=${githubClientSecret}`
     );
     // Update users state with API data
     dispatch({
@@ -40,7 +50,7 @@ const GithubState = (props) => {
     setLoading();
     // Make API Call
     const res = await axios.get(
-      `https://api.github.com/users/${username}?client_id=${process.env.REACT_APP_GITHIB_CLIENT_ID}&clien_secret=${process.env.REACT_APP_GITHIB_CLIENT_SECRET}`
+      `https://api.github.com/users/${username}?client_id=${githubClientId}&clien_secret=${githubClientSecret}`
     );
     dispatch({
       type: GET_USER,
@@ -53,7 +63,7 @@ const GithubState = (props) => {
     setLoading();
     // Make API Call
     const res = await axios.get(
-      `https://api.github.com/users/${username}/repos?per_page=5&sort=created:asc&client_id=${process.env.REACT_APP_GITHIB_CLIENT_ID}&clien_secret=${process.env.REACT_APP_GITHIB_CLIENT_SECRET}`
+      `https://api.github.com/users/${username}/repos?per_page=5&sort=created:asc&client_id=${githubClientId}&clien_secret=${githubClientSecret}`
     );
     dispatch({
       type: GET_REPOS,
